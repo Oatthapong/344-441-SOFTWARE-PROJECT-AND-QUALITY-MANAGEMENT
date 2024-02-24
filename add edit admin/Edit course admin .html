@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แก้ไขรายวิชา</title>
+  <link rel="stylesheet" href="Edit course.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#" class="link">หน้าหลัก</a> >
+      <a href="#" class="link">จัดการรายวิชา</a> >
+      <a href="#">แก้ไขรายวิชา</a>
+      <button1 type="lookout">ออกจากระบบ</button1>
+    </nav>
+  </header>
+  <main>
+    <h1><span class="center">แก้ไขรายวิชา</span></h1>
+    <br>
+    <br>
+    <div class="container1">
+      <label for="course_id">รหัสวิชา:</label> 
+      <input type="text" id="course_id" name="course_id" >
+    </div>
+    <br>
+    <div class="container2">
+        <label for="course_name">ชื่อวิชา:</label>
+        <input type="text" id="course_name" name="course_name" >
+    </div>
+    <br>
+    <div class="container3">
+        <label for="course_category">หมวดหมู่:</label>
+        <select id="course_category" name="course_category">
+            <option value="required">รายวิชาเสรี</option>
+            <option value="elective" selected>รายวิชาเลือก</option>
+        </select>
+    </div>
+    <br>
+    <div class="container4">
+        <label for="course_description">รายละเอียด:</label>
+        <textarea id="course_description" name="course_description"></textarea>
+    </div>
+    <br>
+    <div class="container5">
+        <label for="course_instructor">อาจารย์ผู้สอน:</label>
+        <input type="text" id="course_instructor" name="course_instructor" >
+    </div>
+    <br>
+    <br>
+    <br>
+    <button2 type="submit">ยืนยัน</button2>
+    <script src="popup.js"></script>
+    </main>
+<body>
+    

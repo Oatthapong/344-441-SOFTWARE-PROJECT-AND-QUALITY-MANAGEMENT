@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #9BD8FA;
+  }
+  
+  header {
+    background-color: #D9D9D9;
+    color: #000000;
+    padding: 10px;
+  }
+  
+  main {
+    padding: 10px ;
+  }
+  
+  .center {
+    margin-left: 45%
+  }
+  .container1{
+    margin-left: 30%
+  }
+  .container2{
+    margin-left: 30%
+  }
+  .container3{
+    margin-left: 30%
+  }
+  .container4{
+    margin-left: 30%
+  }
+  .container5{
+    margin-left: 30%
+  }
+  
+  label {
+    float: left; ;
+    display: block;
+    margin-bottom: 1px;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea{
+    width: 600px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+  }
+  
+  label[for="course_id"] {
+    margin-right: 9.9%;
+  }
+  label[for="course_name"] {
+    margin-right: 10.5%;
+  }
+  label[for="course_category"] {
+    margin-right: 9.5%;
+  }
+  label[for="course_description"] {
+    margin-right: 8%;
+  }
+  label[for="course_instructor"] {
+    margin-right: 6.9%;
+  }
+  
+  .link {
+    text-decoration: none;
+  }
+  
+  nav {
+    text-align: right;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  button1 {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none ;
+    background-color: #00417D;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 40px;
+    margin-left: 72%
+  }
+  
+  button2 {
+    padding: 15px 30px;
+    border-radius: 20px;
+    border: none;
+    background-color: #0cb800;
+    color: #ffffff;
+    cursor: pointer;
+    margin-left: 40%
+    
+  }
