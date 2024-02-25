@@ -20,11 +20,9 @@ ul {
     padding: 14px 50px;
     text-decoration: none;
   }
-  
   li a:hover:not(.active) {
     background-color: #ffffff;
   }
-  
   .active {
     background-color: #162191;
     color:white;
@@ -32,4 +30,8 @@ ul {
     position:relative;
     padding:10px;
     margin-top:5px;
+  }
+  a {
+    color: black;
+    text-decoration: none;
   }

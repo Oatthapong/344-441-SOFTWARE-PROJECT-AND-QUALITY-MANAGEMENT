@@ -26,6 +26,7 @@
 .search-bar form {
   /*display: flex;*/
   align-items: center;
+  
 }
 
 .search-bar input {
@@ -36,7 +37,7 @@
 }
 
 .search-bar button {
-  margin-left: 10px;
+  margin-left: px;
   padding: 10px 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -116,12 +117,17 @@ footer {
             cursor: pointer; /* เปลี่ยนเคอร์เซอร์เป็นรูปแบบที่แสดงว่าเป็นปุ่ม */
             border-radius: 4px; /* กำหนดขนาดของขอบเขตของปุ่ม */
 }
+.searckUsernameBar{
+  border-radius: 20px;
+  border: 2px solid #ffffff;
+  width: 400px;
+}
     </style>
 </head>
 <body>
 <ul>
 <i class="bi bi-caret-right-fill"></i>
-  <li><a href="#home">หน้าหลัก</a></li>
+  <li><a href="mainadmin.php">หน้าหลัก</a></li>
   <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
   <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
 </svg></li>
@@ -133,7 +139,8 @@ footer {
       <div class="topnav mt-3 mb-5 ml-3">
       <label> ค้นหา : </label>
         <input class ="searckUsernameBar" type="text" name="cid">
-        <button class="buttonlightgray" type="submit">ค้นหา</button><button class="buttonmintgreen" type="submit">เพิ่ม</button>
+        <button class="buttonlightgray" type="submit">ค้นหา</button>
+        <button class="buttonmintgreen" type="submit"><a href="add_student.php">เพิ่ม</a></button>
         </div>
       </form>
     </div>
@@ -163,9 +170,59 @@ footer {
             <!--<td><button class="btn btn-danger delete-btn" style="margin-right: 1rem;" type="button" onclick="confirmDelete()">ลบ</button></td>-->
             <td><button class="buttonred" type="submit">ลบ</button></td>
           </tr>
+</tr>
         </tbody>
         </table>
 </section>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script>
+        async function confirmUpdate() {
+            const result = await Swal.fire({
+                title: 'คุณต้องการเพิ่มรายวิชาหรือไม่?',
+                showCancelButton: true,
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก',
+                confirmButtonColor: '#28a745',
+                cancelButtonColor: '#dc3545'
+            });
+
+            if (result.isConfirmed) {
+                fetch(document.querySelector('#editForm').action, {
+                    method: 'POST',
+                    body: new FormData(document.querySelector('#editForm'))
+                })
+                .then(response => {
+                    if (response.ok) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'เสร็จสิ้น',
+                            text: 'ลบสำเร็จ',
+                            showConfirmButton: true,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = 'manage_student.php';
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'เกิดข้อผิดพลาด',
+                            text: 'ไม่สามารถแก้ไขได้',
+                            showConfirmButton: true
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('มีข้อผิดพลาดในการส่งคำขอ:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'เกิดข้อผิดพลาด',
+                        text: 'มีข้อผิดพลาดในการส่งคำขอ',
+                        showConfirmButton: true
+                    });
+                });
+            }
+        }
+    </script>
 </html>

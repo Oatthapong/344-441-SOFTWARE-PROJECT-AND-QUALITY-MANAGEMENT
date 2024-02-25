@@ -1,3 +1,16 @@
+<?php
+require_once "connect.php";
+require_once "session.php";
+//require_once "check.php";
+
+//$username = $_session['username'];
+$query = "SELECT * FROM user";
+$result = mysqli_query($conn, $query);
+$result1 = mysqli_fetch_assoc($result);
+$result2 = $result1['ID_U']
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,7 +112,7 @@ button:hover {
   <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
   <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
 </svg></li>
-<li><a href="#home">จัดการข้อมูลนักศึกษา</a></li>
+<li><a href="manage_student.php">จัดการข้อมูลนักศึกษา</a></li>
 <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
   <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
 </svg></li>
@@ -108,23 +121,24 @@ button:hover {
 </ul>
 <div class="content">
             <h2>แก้ไขข้อมูลนักศึกษา</h2>
-            <form action="/add-student" method="post">
+            <form action="edit_student.php" method="post" target="iframe_target">
+            <iframe id="iframe_target" name="iframe_target" src="#" style="width:0;height:0;border:0px solid #fff;"></iframe>
                 <div class="center">
                 <div class="col-25">
                 <label for="student_id">รหัสนักศึกษา :</label>
                 </div>
                 <div class="col-75">
-                <input type="text" id="student_id" name="student_id" value="6410210256"></div></br>
+                <input type="text" id="student_id" name="student_id" value="<?php echo $result1['ID_U'] ?>"></div></br>
                 <div class="col-25">
                 <label for="name">ชื่อ :</label>
                 </div>
                 <div class="col-75">
-                <input type="text" id="name" name="name" value="มัสรียา"></div></br>
+                <input type="text" id="name" name="name" value="<?php echo $result1['Name_U'] ?>"></div></br>
                 <div class="col-25">
                 <label for="surname">สกุล :</label>
                 </div>
                 <div class="col-75">
-                <input type="text" id="surname" name="surname" value="ทอดทิ้ง"></div></br>
+                <input type="text" id="surname" name="surname" value="<?php echo $result1['Last_U'] ?>"></div></br>
                 <button type="submit" onclick="confirmUpdate()">เพิ่ม</button>
             </form>
 </dev>

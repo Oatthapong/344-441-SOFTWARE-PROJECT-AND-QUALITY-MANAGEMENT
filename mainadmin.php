@@ -13,6 +13,7 @@
   padding: 10px;
   margin-left: 800px;
   margin-top: 100px;
+  text-align:center;
 }
 .left {
   position: absolute;
@@ -20,54 +21,49 @@
   width: 400px;
   padding: 10px;
   margin-top: 160px;
+  text-align:center;
 }
 .text{
   position: relative;
   margin-left: 800px;
   margin-top: 50px;
+  text-align:center
 }
-  /*.button {
-  border: none;
-  color: white;
-  padding: 0px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}*/
-.button2 {background-color: #BBDEFB;
+.button {
+  background-color: #BBDEFB;
 }
 .box {
         width: 200px;
         height: 240px;
         border: solid 1px black;
-        background-color:#FFFFFF;        
+        background-color:#FFFFFF;
+        border-radius: 15px;        
     }
     .box1 {
         width: 200px;
         height: 170px;
         border: solid 1px black;
-        background-color: #FFFFFF;        
+        background-color: #FFFFFF;
+        border-radius: 15px;        
     }
     .box2 {
         width: 200px;
         height: 150px;
         border: solid 1px black;
-        background-color: #FFFFFF;      
+        background-color: #FFFFFF;
+        border-radius: 15px;      
     }
 </style>
   </head>
 <body >
-  
+
 <ul>
   <li><a href="#home">หน้าหลัก</a></li>
   <li style="float:right"><a class="active" href="#about">ออกจากระบบ</a></li>
 </ul>
 <div class="left box">
   <h1>นักศึกษา</h1></br>
-  <button type="button" class="btn btn-info"><p>จัดการข้อมูลนักศึกษา</p></button></br></br>
+  <button type="button" class="btn btn-info"><a href="manage_student.php"><p>จัดการข้อมูลนักศึกษา</p></button></a></br></br>
   <button type="button" class="btn btn-info"><p>จัดการบัญชี</p></button>
 </div>
   <div class="right box1">
@@ -76,7 +72,7 @@
 </div>
 <div class="text box2">
 <h1>รีวิวรายวิชา</h1>
-<button type="button" class="btn btn-info"><p>จัดการรีวิวรายวิชา</p></button>
+<button type="button" class="btn btn-info"><a href="manage_reviews.php"><p>จัดการรีวิวรายวิชา</p></a></button>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>

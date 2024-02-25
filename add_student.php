@@ -133,10 +133,60 @@ button:hover {
                 </div>
                 <div class="col-75">
                 <input type="text" id="surname" name="surname" value="ทอดทิ้ง"></div></br>
-                <button type="submit">เพิ่ม</button>
+                <button  onclick="confirmUpdate()" type="submit">เพิ่ม</button>
             </form>
 </dev>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        async function confirmUpdate() {
+            const result = await Swal.fire({
+                title: 'คุณต้องการเพิ่มรายวิชาหรือไม่?',
+                showCancelButton: true,
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก',
+                confirmButtonColor: '#28a745',
+                cancelButtonColor: '#dc3545'
+            });
+
+            if (result.isConfirmed) {
+                fetch(document.querySelector('#editForm').action, {
+                    method: 'POST',
+                    body: new FormData(document.querySelector('#editForm'))
+                })
+                .then(response => {
+                    if (response.ok) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'เสร็จสิ้น',
+                            text: 'ลบสำเร็จ',
+                            showConfirmButton: true,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = 'manage_student.php';
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'เกิดข้อผิดพลาด',
+                            text: 'ไม่สามารถแก้ไขได้',
+                            showConfirmButton: true
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('มีข้อผิดพลาดในการส่งคำขอ:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'เกิดข้อผิดพลาด',
+                        text: 'มีข้อผิดพลาดในการส่งคำขอ',
+                        showConfirmButton: true
+                    });
+                });
+            }
+        }
+    </script>
 </html>
