@@ -1,0 +1,40 @@
+body {
+    background-color: #9BD8FA;
+}
+
+body,
+    .form-signin {
+        font-family: 'Kanit', sans-serif;
+    }
+
+.icon-p {
+    display: inline-block;
+    font-size: 150px;
+}
+
+.btn-style {
+    background-color: #00417D;
+    border-radius: 12px;
+}
+
+.text-style {
+    color: #ffffff;
+}
+
+.card-style {
+    border-radius: 40px;
+}
+
+.btn-style:hover {
+    background-color: #0A72D2;
+    color: #ffffff;
+}
+
+.btn-style2 {
+    background-color: #D9D9D9;
+    border-radius: 12px;
+}
+
+.card-style2 {
+    height: 20rem;
+}

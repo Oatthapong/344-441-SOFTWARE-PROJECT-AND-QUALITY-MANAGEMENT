@@ -1,0 +1,34 @@
+body {
+    background-color: #9BD8FA;
+}
+
+body,
+    .form-signin {
+        font-family: 'Kanit', sans-serif;
+    }
+
+.input-style{
+    border-radius: 10px;
+}
+
+.btn-color {
+    background-color: #9BD8FA;
+    border-radius: .7rem;
+    width: 10rem;
+    height: 3.5rem;
+}
+
+.bg-primary .swal2-title {
+    background-color: #036397;
+    color: #000000; 
+    margin: 0; 
+    padding: 20px;
+}
+
+.header-style {
+    background-color: #DCF4FF;
+}
+
+.card-style {
+    border-radius: 20px;
+}

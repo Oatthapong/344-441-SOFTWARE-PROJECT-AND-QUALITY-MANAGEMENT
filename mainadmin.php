@@ -64,11 +64,11 @@
 <div class="left box">
   <h1>นักศึกษา</h1></br>
   <button type="button" class="btn btn-info"><a href="manage_student.php"><p>จัดการข้อมูลนักศึกษา</p></button></a></br></br>
-  <button type="button" class="btn btn-info"><p>จัดการบัญชี</p></button>
+  <button type="button" class="btn btn-info"><a href="showUserFAdmin.php"><p>จัดการบัญชี</p></button></a>
 </div>
   <div class="right box1">
   <h1>รายวิชา</h1>
-  <button type="button" class="btn btn-info"><p>จัดการรายวิชา</p></button>
+  <button type="button" class="btn btn-info"><a href="showCourseFAdmin.php"><p>จัดการรายวิชา</p></button></a>
 </div>
 <div class="text box2">
 <h1>รีวิวรายวิชา</h1>

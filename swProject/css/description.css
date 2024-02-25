@@ -1,0 +1,43 @@
+body {
+    background-color: #9BD8FA;
+}
+
+body,
+    .form-signin {
+        font-family: 'Kanit', sans-serif;
+    }
+
+
+.card-style {
+    width: 53rem; 
+    height: 20rem;   
+}
+
+
+
+.head {
+    margin-top: 25px;
+    margin-left: 40px;
+}
+
+.couse {
+    margin-top: 30px;
+    margin-left: 60px;
+}
+
+.descrip {
+    margin-left: 100px;
+}
+
+.title-style {
+    margin-left: 20rem;
+}
+
+.rating-stars {
+    display: inline-block;
+    font-size: 24px;
+}
+
+.rating-stars i {
+    margin-right: 2px;
+}

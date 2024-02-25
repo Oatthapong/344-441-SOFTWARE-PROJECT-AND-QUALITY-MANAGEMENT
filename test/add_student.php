@@ -170,10 +170,9 @@ if(isset($_POST['student_id']) && isset($_POST['name']) && isset($_POST['surname
   $id = $_POST['student_id'];
   $name = $_POST['name'];
   $surname = $_POST['surname'];
-  $username = $POST['student_id'];
 
   // เขียน SQL query
-  $sql = "INSERT INTO user (ID_U, Name_U, Last_U, Username) VALUES ('$id', '$name', '$surname', '$id')";
+  $sql = "INSERT INTO user (ID_U, Name_U, Last_U) VALUES ('$id', '$name', '$surname')";
 
   // ดำเนินการ query
   $result = mysqli_query($conn, $sql);
@@ -189,7 +188,7 @@ if(isset($_POST['student_id']) && isset($_POST['name']) && isset($_POST['surname
         showConfirmButton: true,
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.href = 'manage_student.php'; 
+          window.location.href = 'add_student.php'; 
         }
       });
     </script>";

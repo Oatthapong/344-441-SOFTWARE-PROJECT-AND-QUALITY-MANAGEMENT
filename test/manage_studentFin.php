@@ -249,7 +249,7 @@
 <div class="container m-auto">
                 <h1>จัดการข้อมูลนักศึกษา</h1>
                 
-                <form class="formSearchUser" method="get" action="manage_studentFin.php">
+                <form class="formSearchUser" method="get" action="showCourseFAdminFin.php">
                     <div class="topnav mt-3 mb-5 ml-3">
                         <label> ค้นหา : </label>
                         <input class ="searckUsernameBar" type="text" name="uid">
@@ -265,39 +265,46 @@
                         <th width="13%" class ="headColor">แก้ไข</th>
                         <th width="13%" class ="headColor">ลบ</th>
                     </tr>
-                <?php
-                    $sql = 'SELECT * FROM user'; 
-                    $result = mysqli_query($conn, $sql);
-                    $i = 0;
-                    if(mysqli_num_rows($result) > 0){
-                        while($row = mysqli_fetch_assoc($result)){
-                            echo "<tr>";
-                                echo "<td class='textnotCenter'>".$row['ID_U']."</td>";
-                                echo "<td class='textnotCenter'>".$row['Name_U']."</td>";
-                                echo "<td class='textnotCenter'>".$row['Last_U']."</td>";
-                                echo "<td><a class='btn btn-warning' href='edit_student.php?user_id=".$row['ID_U']."'>แก้ไข</a></td>";
-                                echo '<td>';
-                                echo '<form id="deleteForm_' . $row['ID_U'] . '" method="POST" action="'. htmlentities($_SERVER["PHP_SELF"]).'">';
-                                echo '<input type="hidden" name="delete_user" value="' . $row['ID_U'] . '">';
-                                echo '<button class="btn btn-danger delete-btn" style="margin-right: 1rem;" type="button" onclick="confirmDelete(' . $row['ID_U'] . ')">ลบ</button>';
-                                echo '</form>';
-                                echo '</td>';                                
-                            echo "</tr>";
-                            $i = $i+1;
+                    <?php
+                        $i = 0;
+                        if (isset($_GET["uid"])) {
+                            $uid = $_GET["uid"];
+                            $sql = "SELECT * FROM user WHERE ID_U LIKE '%$uid%'";
+                            $result = mysqli_query($conn, $sql);
+
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<tr>";
+                                    echo "<td class='textnotCenter'>".$row['ID_U']."</td>";
+                                    echo "<td class='textnotCenter'>".$row['Name_U']."</td>";
+                                    echo "<td class='textnotCenter'>".$row['Last_U']."</td>";
+                                    echo "<td><a class='btn btn-warning' href='edit_student.php?user_id=".$row['ID_U']."'>แก้ไข</a></td>";
+                                    echo '<td>';
+                                    echo '<form id="deleteForm_' . $row['ID_U'] . '" method="POST" action="'. htmlentities($_SERVER["PHP_SELF"]).'">';
+                                    echo '<input type="hidden" name="delete_user" value="' . $row['ID_U'] . '">';
+                                    echo '<button class="btn btn-danger delete-btn" style="margin-right: 1rem;" type="button" onclick="confirmDelete(' . $row['ID_U'] . ')">ลบ</button>';
+                                    echo '</form>';
+                                    echo '</td>';                                
+                                echo "</tr>";
+                                    $i++;
+                                }
+                            } else {
+                                echo "ไม่พบข้อมูลที่ตรงกับคำค้นหา";
+                            }
                         }
-                    }
-                    if($i < 8){
-                        for($j = 0; $j < 8 - $i; $j++) {
-                            echo "<tr>";
-                            echo "<td>&nbsp;<d>";
-                            echo "<td></td>";
-                            echo "<td></td>";
-                            echo "<td></td>";
-                            echo "<td></td>";
-                            echo "</tr>";
+                        if ($i < 8) {
+                            for ($j = 0; $j < 8 - $i; $j++) {
+                                echo "<tr>";
+                                echo "<td>&nbsp;<d>";
+                                echo "<td></td>";
+                                echo "<td></td>";
+                                echo "<td></td>";
+                                echo "<td></td>";
+                                echo "</tr>";
+                            }
                         }
-                    }
-                ?>
+                    ?>
+
                 </table>
             </div>
 </body>

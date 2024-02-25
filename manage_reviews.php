@@ -1,8 +1,8 @@
 <?php
     require_once "connect.php";
-    require_once "session.php";
+    //require_once "session.php";
 
-    $query = "SELECT u.Name_U, u.Last_U, r.Detail_R, r.Rating, c.ID_C, c.Name_C FROM review as r, course as c, user as u WHERE r.username = u.username AND r.ID_C = c.ID_C";
+    $query = "SELECT r.ID_R, u.Name_U, u.Last_U, r.Detail_R, r.Rating, c.ID_C, c.Name_C FROM review as r, course as c, user as u WHERE r.username = u.username AND r.ID_C = c.ID_C";
     $result_review = mysqli_query($conn, $query);
                             
     $details = array();
@@ -18,16 +18,24 @@
         $cousres[] = $row;
     }
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $id_c = $_POST['show_details'];
-        $query = "SELECT u.Name_U, u.Last_U, r.Detail_R, r.Rating, c.ID_C, c.Name_C FROM review as r, course as c, user as u WHERE r.username = u.username AND r.ID_C = c.ID_C AND c.ID_C='".$id_c.'\'';
-        $result_review = mysqli_query($conn, $query);
-                            
-        $details = array();
-        while ($row = mysqli_fetch_assoc($result_review)) {
-            $details[] = $row;
-        }   
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        if (isset($_POST['id'])) {
+            $idr = $_POST['id'];
+            $stmt = $conn->prepare("DELETE FROM review WHERE ID_R = ?");
+            $stmt->bind_param("s", $idr);
                 
+            if ($stmt->execute()) {
+                $stmt->close();
+                $conn->close();
+                http_response_code(200);
+                exit();
+            } else {
+                http_response_code(500);
+                $stmt->close();
+                $conn->close();
+            }
+            
+        }
     }
 ?>
 
@@ -41,9 +49,9 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&display=swap" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
-        <meta name="theme-color" content="#712cf9" />
-        <link rel='stylesheet' type='text/css' href='manage_reviews.css'>
         <link rel='stylesheet' type='text/css' href='style.css'>
+        <meta name="theme-color" content="#712cf9" />
+
         <style>
         .scroll-down {
             margin-top: 50px; /* กำหนดระยะห่างด้านบนของข้อความ */
@@ -73,7 +81,7 @@
   <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
   <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
 </svg></li>
-<li><a href="#home">จัดการข้อมูลนักศึกษา</a></li>
+<li><a href="#home">จัดการรีวิวรายวิชา</a></li>
   <li style="float:right"><a class="active" href="#about">ออกจากระบบ</a></li>
 </ul>
 <div class="scroll-down" style="text-align:center;"><h2>จัดการรีวิวรายวิชา</h2></div>
@@ -108,19 +116,25 @@
                                                 }
                                             }
                                             ?>
-                                            </div><div class="scroll-right"> 
-                                                <button class="buttonred" onclick="confirmUpdate()" type="submit"> ลบ</button>
                                             </div>
+                                            <div class="scroll-right">
+                                                <form id="deleteForm_<?php echo $detail['ID_R']; ?>" method="POST" action="<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>">
+                                                    <input type="hidden" value="<?php echo $detail['ID_R']; ?>" name="id" />
+                                                    <button class="buttonred" style="margin-right: 1rem;" type="button" onclick="confirmDelete(<?php echo $detail['ID_R']; ?>)">ลบ</button>
+                                                </form>
+                                            </div>
+                                            
                                     </div>
                                 </div>
                                 </div>
                             </div>
-                </div>
+                        </div>
                     <?php endforeach; ?>
             </div>
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body text-start">
+                        
                     <form method="post">
                         <?php foreach ($cousres as $i => $cousre): ?>
                             <button class="btn" type="submit" name="show_details" value="<?php echo $cousre['ID_C']; ?>">
@@ -129,6 +143,7 @@
                             <br />
                         <?php endforeach; ?>
                     </form>
+                        </div>
                     </div>
                 </div>
                 </div>
@@ -138,52 +153,56 @@
     </body>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
-        async function confirmUpdate() {
-            const result = await Swal.fire({
-                title: 'คุณต้องการลบรีวิวหรือไม่?',
-                showCancelButton: true,
-                confirmButtonText: 'ตกลง',
-                cancelButtonText: 'ยกเลิก',
-                confirmButtonColor: '#28a745',
-                cancelButtonColor: '#dc3545'
-            });
+              async function confirmDelete(rid) {
+                    const result = await Swal.fire({
+                        title: 'คุณต้องการลบนักศึกษาหรือไม่?',
+                        showCancelButton: true,
+                        confirmButtonText: 'ตกลง',
+                        cancelButtonText: 'ยกเลิก',
+                        confirmButtonColor: '#28a745',
+                        cancelButtonColor: '#dc3545'
+                    });
 
-            if (result.isConfirmed) {
-                fetch(document.querySelector('#editForm').action, {
-                    method: 'POST',
-                    body: new FormData(document.querySelector('#editForm'))
-                })
-                .then(response => {
-                    if (response.ok) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'เสร็จสิ้น',
-                            text: 'ลบสำเร็จ',
-                            showConfirmButton: true,
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.href = 'manage_student.php';
+                    if (result.isConfirmed) {
+                        fetch(document.querySelector('#deleteForm_' + rid).action, {
+                            method: 'POST',
+                            body: new FormData(document.querySelector('#deleteForm_' + rid))
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'เสร็จสิ้น',
+                                    text: 'ลบนักศึกษาเสร็จสิ้น',
+                                    showConfirmButton: true,
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = 'manage_reviews.php'; 
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'เกิดข้อผิดพลาด',
+                                    text: 'ไม่สามารถลบนักศึกษาได้',
+                                    showConfirmButton: true
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = 'manage_student.php'; 
+                                    }
+                                });
                             }
-                        });
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'เกิดข้อผิดพลาด',
-                            text: 'ไม่สามารถแก้ไขได้',
-                            showConfirmButton: true
+                        })
+                        .catch(error => {
+                            console.error('มีข้อผิดพลาดในการส่งคำขอ:', error);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'เกิดข้อผิดพลาด',
+                                text: 'มีข้อผิดพลาดในการส่งคำขอ',
+                                showConfirmButton: true
+                            });
                         });
                     }
-                })
-                .catch(error => {
-                    console.error('มีข้อผิดพลาดในการส่งคำขอ:', error);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'เกิดข้อผิดพลาด',
-                        text: 'มีข้อผิดพลาดในการส่งคำขอ',
-                        showConfirmButton: true
-                    });
-                });
-            }
-        }
+                }
     </script>
 </html>

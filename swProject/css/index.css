@@ -1,0 +1,17 @@
+body {
+    background-color: #9BD8FA;
+}
+
+.card-style {
+    background-color: #ffffff;  
+    border-radius: .5rem; 
+}
+
+body,
+    .form-signin {
+        font-family: 'Kanit', sans-serif;
+    }
+
+.card-style2 {
+    height: 20rem;
+}

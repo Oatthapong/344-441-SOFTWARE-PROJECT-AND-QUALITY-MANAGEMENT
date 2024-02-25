@@ -1,0 +1,32 @@
+body {
+    background-color: #9BD8FA;
+}
+
+body,
+    .form-signin {
+        font-family: 'Kanit', sans-serif;
+    }
+
+    
+.card-style{
+    background-color: #9BD8FA;
+    border: none;
+}
+
+.input-style{
+    border-radius: 10px;
+}
+
+.btn-color {
+    background-color: #90D193;
+    border-radius: .7rem;
+    width: 10rem;
+    height: 3.5rem;
+}
+
+.bg-primary .swal2-title {
+    background-color: #9BD8FA; /* สีพื้นหลังใหม่ */
+    color: #000000; /* สีข้อความ */
+    margin: 0; /* กำหนดให้ margin เป็น 0 */
+    padding: 20px; /* กำหนดให้ padding เป็น 20px (ตามความเหมาะสม) */
+}

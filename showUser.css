@@ -1,0 +1,110 @@
+.body1,
+    .form-signin {
+        font-family: 'Kanit', sans-serif;
+    }
+
+.background {
+    background-color: #9BD8FA;
+}
+.showStdTable {
+    border-collapse: collapse;
+    /*margin: auto;*/
+    width: 80%;
+    margin-left: 11%; /* กำหนดระยะห่างจากฝั่งซ้ายเป็น 11% */
+    margin-right: 9%; /* กำหนดระยะห่างจากฝั่งขวาเป็น 9% */
+
+}
+.headColor{
+    text-align: center;
+    background-color: #DCF4FF;
+    font-size: 24px;
+}
+.buttonCenter{
+    text-align: center;
+}
+.textnotCenter{
+    text-align: left;
+    padding-left: 30px;
+    font-weight: bold; /* ตัวหนา */
+
+}
+td, th {
+    border: 1px solid black;
+    padding: 8px;
+}
+tr {
+    background-color: #FFFFFF;
+}
+h1 {
+    text-align: center;
+}
+.btn-primary{
+    background-color: #d9d9d9; /* สีพื้นหลังของปุ่ม */
+    border: none; /* ไม่มีเส้นกรอบ */
+    border-radius: 14px; /* กำหนดความโค้งของเส้นกรอบ */
+    padding: 10px 20px; /* กำหนดระยะห่างของข้อความภายในปุ่ม */
+    color: #000; /* สีของข้อความภายในปุ่ม */
+    text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+    text-decoration: none; /* ไม่มีการเพิ่มขีดเส้นใต้ข้อความ */
+    display: inline-block; /* แสดงเป็นบล็อกอิมไพล์ */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* เพิ่มเงา */
+    outline: none; /* ไม่มีเส้นกรอบสีดำขณะพิมพ์ */
+}
+.searckUsernameBar{
+    background-color: #fff; /* สีพื้นหลังของกล่องค้นหาเป็นสีขาว */
+    border-radius: 20px; /* เพิ่มความโค้งให้กับกรอบ */
+    padding: 10px 20px; /* เพิ่มช่องว่างภายในกล่องค้นหา */
+    font-size: 18px; /* กำหนดขนาดของตัวอักษร */
+    width: 300px; /* กำหนดความกว้างของกล่องค้นหา */
+    border: none;
+    width: 480px; /* กำหนดความยาวของกล่องค้นหา */
+}
+.formSearchUser {
+    display: flex; /* ใช้ Flexbox */
+    margin-left: 13%; /* กำหนดระยะห่างจากด้านซ้ายของหน้าจอเป็น 10% ของความกว้างของหน้าจอ */
+}
+label{
+    font-size: 30px;
+}
+.updateUser{
+    background-color: #D9D9D9;
+    text-align: center;
+}.formEditUser {
+display: flex;
+justify-content: center; /* จัดตำแหน่งในแกนนอนตรงกลาง */
+align-items: center; /* จัดตำแหน่งในแกนตั้งตรงกลาง */
+}
+ul {
+    list-style-type: none;
+    margin: 10;
+    padding: 30;
+    overflow: hidden;
+    background-color: #d3d2d2;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 14px 50px;
+    text-decoration: none;
+  }
+  li a:hover:not(.active) {
+    background-color: #ffffff;
+  }
+  .active {
+    background-color: #162191;
+    color:white;
+    border-radius: 20px;
+    position:relative;
+    padding:10px;
+    margin-top:5px;
+  }
+  a {
+    color: black;
+    text-decoration: none;
+  }
